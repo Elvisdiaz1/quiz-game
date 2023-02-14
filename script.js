@@ -107,3 +107,23 @@ answer1.addEventListener("click", function (event) {
 
   console.log(user);
 });
+
+let questionContainer = document.querySelector("#question1");
+questionContainer.addEventListener("click", function (event) {
+  let element = event.target;
+
+  if (element.matches("#question1")) {
+    // var state = element.getAttribute("data-state");
+    var answerChoice = element.getAttribute("data-answer");
+
+    if (answerChoice === "correct-answer") {
+      //   element.setAttribute("data-state", "visible");
+      //   element.textContent = text;
+      console.log("correct");
+    } else {
+      //   element.setAttribute("data-state", "hidden");
+      //   element.textContent = "";
+      console.log("incorrect");
+    }
+  }
+});

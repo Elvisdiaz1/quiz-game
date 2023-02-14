@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <a href="./high-score.html">high score</a>
-    <p id="timer"></p>
+    <div id="top-screen">
+      <a id="high-score" href="./high-score.html">high score</a>
+      <p id="timer"></p>
+    </div>
+
     <div id="game">
       <h1>Coding Quiz Game</h1>
       <p>
@@ -20,19 +23,66 @@
         questions in time, you lose. Try your best and have fun!
       </p>
       <button id="button">Start Game</button>
-    </div>
-    <div id="question1">
-      <div id="question">What is the full name of HTML?</div>
-      <div id="answers">
-        <ul>
-          <li><button id="choice1">Hyper Type Making Languague</button></li>
-          <li><button id="choice2">Hyper Text Markup Languague</button></li>
-          <li><button id="choice3">Happy Typing a Madeup Languague</button></li>
-          <li><button id="choice4">Hyper Text Markup Languague</button></li>
-        </ul>
+      <div id="question1">
+        <div class="question">What is the full name of HTML?</div>
+        <div class="answers">
+          <ul>
+            <li>
+              <button id="choice1" data-answer="incorrect-answer">
+                Hyper Type Making Languague
+              </button>
+            </li>
+            <li>
+              <button id="choice2" data-answer="" ="correct-answer">
+                Hyper Text Markup Languague
+              </button>
+            </li>
+            <li>
+              <button id="choice3" data-answer="incorrect-answer">
+                Happy Typing a Madeup Languague
+              </button>
+            </li>
+            <li>
+              <button id="choice4" data-answer="incorrect-answer">
+                Hyper Text Markup Languague
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <script src="./script.js"></script>
+    <!-- <div id="question2">
+      <div class="question">What is the role of CSS?</div>
+      <div class="answers">
+        <ul>
+          <li><button id="choice1">To style the website</button></li>
+          <li><button id="choice2">To do functions</button></li>
+          <li><button id="choice3">To do nothing</button></li>
+          <li><button id="choice4">To create chaos</button></li>
+        </ul>
+      </div>
+    </div>
+    <div id="question1">
+      <div class="question">What does Array.push do?</div>
+      <div class="answers">
+        <ul>
+          <li><button id="choice1">Pushes strings in an object</button></li>
+          <li><button id="choice2">Creates functions in the array</button></li>
+          <li>
+            <button id="choice3">
+              Pushes items such as strings and numbers into a array
+            </button>
+          </li>
+          <li>
+            <button id="choice4">
+              Pulls items such as strings and numbers from an array
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+
+    <!-- <script src="./script.js"></script> -->
   </body>
 </html>

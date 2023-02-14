@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#top-screen {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+}
+
+#game {
+  position: relative;
+  left: 25%;
+  padding-top: 5%;
+  max-width: 50%;
+}
+
+#game h1 {
+  position: relative;
+  left: 30%;
+  padding-bottom: 3%;
+}
+#game p {
+  font-size: 20px;
+}
+
+#button {
+  position: relative;
+  left: 38%;
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 3%;
+}
+
+.none {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
