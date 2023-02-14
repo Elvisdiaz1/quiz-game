@@ -4,9 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Coding Quiz Game</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>hi</h1>
+    <a href="./high-score.html">high score</a>
+    <p id="timer"></p>
+    <div id="game">
+      <h1>Coding Quiz Game</h1>
+      <p>
+        Welcome to the coding quiz game! Try to answer the following questions
+        within the time limit. When you answer all the questions, your score
+        will be determined and you can save the score to complete against your
+        friends or aim to get a better score. If you do not answer all the
+        questions in time, you lose. Try your best and have fun!
+      </p>
+      <button id="button">Start Game</button>
+    </div>
+    <div id="question1">
+      <div id="question">What is the full name of HTML?</div>
+      <div id="answers">
+        <ul>
+          <li><button id="choice1">Hyper Type Making Languague</button></li>
+          <li><button id="choice2">Hyper Text Markup Languague</button></li>
+          <li><button id="choice3">Happy Typing a Madeup Languague</button></li>
+          <li><button id="choice4">Hyper Text Markup Languague</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
   </body>
 </html>
