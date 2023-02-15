@@ -105,7 +105,7 @@ function startQuiz() {
   questionsDiv.appendChild(questionEl);
   questionsDiv.appendChild(answersDiv);
   body.appendChild(questionsDiv);
-
+  questionsDiv.setAttribute("class", "visible");
   button1.setAttribute("data-answer", "incorrect-answer");
   button2.setAttribute("data-answer", "correct-answer");
   button3.setAttribute("data-answer", "incorrect-answer");
@@ -113,72 +113,113 @@ function startQuiz() {
   button2.setAttribute("data-status", "not-clicked");
 
   // game.appendChild(questionsDiv);
-  // playGame();
+  playGame();
 }
 
 function playGame() {
   questionsDiv.addEventListener("click", function (event) {
     let element = event.target;
+    let status = element.getAttribute("data-status");
 
     if (element.matches(".choice")) {
       // var state = element.getAttribute("data-state");
       var answerChoice = element.getAttribute("data-answer");
-      let status = element.getAttribute("data-status");
+
       if (answerChoice === "correct-answer") {
         element.setAttribute("data-status", "clicked");
-        if (status === "clicked") {
-          console.log("clicked");
-        }
+      } else {
+        number = number - 5;
+        console.log("incorrect");
+      }
+    }
+    if (status === "clicked") {
+      questionEl.textContent = "What is the role of CSS?";
+      button1.textContent = "To style the website";
+      button2.textContent = "To do functions";
+      button3.textContent = "To do nothing";
+      button4.textContent = "To create chaos";
+
+      button1.setAttribute("data-answer", "correct-answer");
+      button2.setAttribute("data-answer", "incorrect-answer");
+
+      button1.setAttribute("data-status", "not-clicked");
+      playGamePt2();
+      console.log("clicked");
+    } else {
+      number = number - 5;
+      console.log("incorrect");
+    }
+  });
+}
+function playGamePt2() {
+  questionsDiv.addEventListener("click", function (event) {
+    let element = event.target;
+    let status = element.getAttribute("data-status");
+
+    if (element.matches(".choice")) {
+      // var state = element.getAttribute("data-state");
+      var answerChoice = element.getAttribute("data-answer");
+
+      if (answerChoice === "correct-answer") {
+        element.setAttribute("data-status", "clicked");
+      } else {
+        number = number - 5;
+        console.log("incorrect");
+      }
+    }
+    if (status === "clicked") {
+      questionEl.textContent = "What does Array.push() do?";
+      button1.textContent = "Pushes strings in an object";
+      button2.textContent = " Creates functions in the array";
+      button3.textContent =
+        "Pushes items such as strings and numbers into a array";
+      button4.textContent =
+        "Pulls items such as strings and numbers from an array";
+
+      button1.setAttribute("data-answer", "incorrect-answer2");
+      button3.setAttribute("data-answer", "correct-answer");
+
+      button3.setAttribute("data-status", "not-clicked");
+
+      playGamePt3();
+      console.log("clicked");
+    } else {
+      //   element.setAttribute("data-state", "hidden");
+      //   element.textContent = "";
+      console.log("incorrect");
+    }
+  });
+}
+function playGamePt3() {
+  questionsDiv.addEventListener("click", function (event) {
+    let element = event.target;
+    let status = element.getAttribute("data-status");
+
+    if (element.matches(".choice")) {
+      // var state = element.getAttribute("data-state");
+      var answerChoice = element.getAttribute("data-answer");
+
+      if (answerChoice === "correct-answer") {
+        element.setAttribute("data-status", "clicked");
       } else {
         //   element.setAttribute("data-state", "hidden");
         //   element.textContent = "";
         console.log("incorrect");
       }
     }
-  });
+    if (status === "clicked") {
+      game.setAttribute("class", "visible");
+      questionsDiv.setAttribute("class", "none");
+      game.textContent =
+        "GAME IS FINISHED! Your time was " +
+        number +
+        " secs. Reload the page to try again.";
 
-  let questionContainer2 = document.querySelector("#question2");
-  questionContainer2.addEventListener("click", function (event) {
-    let element = event.target;
-
-    if (element.matches(".choice2")) {
-      // var state = element.getAttribute("data-state");
-      var answerChoice2 = element.getAttribute("data-answer");
-      let status = element.getAttribute("data-status");
-      if (answerChoice2 === "correct-answer") {
-        element.setAttribute("data-status", "clicked");
-        if (status === "clicked") {
-          console.log("clicked");
-        }
-      } else {
-        //   element.setAttribute("data-state", "hidden");
-        //   element.textContent = "";
-        console.log("incorrect");
-      }
-    }
-  });
-
-  let questionContainer3 = document.querySelector("#question3");
-  questionContainer3.addEventListener("click", function (event) {
-    let element = event.target;
-
-    if (element.matches(".choice3")) {
-      // var state = element.getAttribute("data-state");
-      var answerChoice3 = element.getAttribute("data-answer");
-      let status = element.getAttribute("data-status");
-      if (answerChoice3 === "correct-answer") {
-        element.setAttribute("data-status", "clicked");
-        if (status === "clicked") {
-          console.log("clicked");
-          game.textContent = "game done. Your time was " + number + " secs";
-        }
-        //   element.textContent = text;
-        console.log("correct");
-      } else {
-        //   element.setAttribute("data-state", "hidden");
-        //   element.textContent = "";
-        console.log("incorrect");
-      }
+      console.log("clicked");
+    } else {
+      //   element.setAttribute("data-state", "hidden");
+      //   element.textContent = "";
+      console.log("incorrect");
     }
   });
 }
