@@ -16,49 +16,52 @@ let viewHighScoreButton = document.createElement("a");
 viewHighScoreButton.setAttribute("id", "high-score");
 viewHighScoreButton.setAttribute("href", "./high-score.html");
 
-let choices = [
-  "Hyper Type Making Languague",
-  "Hyper Text Markup Languague",
-  "Happy Typing a Madeup Languague",
-  "Hamburger Tuna Mayo and Lettuce",
-];
-function generateList() {
-  let list = document.createElement("ul");
+let questionsDiv = document.createElement("div");
+questionsDiv.setAttribute("id", "questions");
 
-  choices.forEach((item) => {
-    let listItems = document.createElement("li");
-    let listItemButtons = document.createElement("button");
-    listItemButtons.innerHTML = item;
-    listItems.append(listItemButtons);
-    list.append(listItems);
-  });
-  answers.appendChild(list);
-}
+let questionEl = document.createElement("p");
+questionEl.setAttribute("class", "question");
 
-let question1 = {
-  question: "What is the full name of HTML?",
-  choice1: "Hyper Type Making Languague",
-  choice2: "Hyper Text Markup Languague",
-  choice3: "Happy Typing a Madeup Languague",
-  choice4: "Hamburger Tuna Mayo and Lettuce",
-  answer: "Hyper Text Markup Languague",
-};
+let answersDiv = document.createElement("div");
+answersDiv.setAttribute("class", "answers");
 
-// let question = "What is the full name of HTML?";
-// let choice1 = "Hyper Type Making Languague";
-// let choice2 = "Hyper Text Markup Languague";
-// let choice3 = "Happy Typing a Madeup Languague";
-// let choice4 = "Hamburger Tuna Mayo and Lettuce";
+let listDiv = document.createElement("ul");
+let listItem = document.createElement("li");
+let listItem2 = document.createElement("li");
+let listItem3 = document.createElement("li");
+let listItem4 = document.createElement("li");
+
+let button1 = document.createElement("button");
+button1.setAttribute("id", "choice1");
+button1.setAttribute("class", "choice");
+let button2 = document.createElement("button");
+button2.setAttribute("id", "choice2");
+button2.setAttribute("class", "choice");
+// button2.setAttribute("data-answer");
+let button3 = document.createElement("button");
+button3.setAttribute("id", "choice3");
+button3.setAttribute("class", "choice");
+// button3.setAttribute("data-answer");
+let button4 = document.createElement("button");
+button4.setAttribute("id", "choice4");
+button4.setAttribute("class", "choice");
+// button4.setAttribute("data-answer");
 
 let number = 59;
 
 // Build
 timer.textContent = "Time: " + number + " secs";
+questionEl.textContent = "What is the full name of HTML?";
+button1.textContent = "Hyper Type Making Languague";
+button2.textContent = "Hyper Text Markup Languague";
+button3.textContent = " Happy Typing a Madeup Languague";
+button4.textContent = "Hoping Text Markup Languague";
 
 // Place
 // body.appendChild(time);
 
 // Functions
+
 function setTime() {
   let timeCountingDown = setInterval(function () {
     number--;
@@ -72,6 +75,8 @@ function setTime() {
 }
 
 function sendMessage() {
+  game.setAttribute("class", "visible");
+  questionsDiv.setAttribute("class", "none");
   game.textContent = "You Lose";
   button.textContent = "Retry";
   viewHighScoreButton.textContent = "View High Scores";
@@ -87,29 +92,32 @@ function startQuiz() {
   //   answer4.textContent = question1.choice4;
   //   playQuiz();
   //   generateList();
-  playGame();
+  game.setAttribute("class", "none");
+  listItem.append(button1);
+  listItem2.append(button2);
+  listItem3.append(button3);
+  listItem4.append(button4);
+  listDiv.appendChild(listItem);
+  listDiv.appendChild(listItem2);
+  listDiv.appendChild(listItem3);
+  listDiv.appendChild(listItem4);
+  answersDiv.appendChild(listDiv);
+  questionsDiv.appendChild(questionEl);
+  questionsDiv.appendChild(answersDiv);
+  body.appendChild(questionsDiv);
+
+  button1.setAttribute("data-answer", "incorrect-answer");
+  button2.setAttribute("data-answer", "correct-answer");
+  button3.setAttribute("data-answer", "incorrect-answer");
+  button4.setAttribute("data-answer", "incorrect-answer");
+  button2.setAttribute("data-status", "not-clicked");
+
+  // game.appendChild(questionsDiv);
+  // playGame();
 }
 
-button.addEventListener("click", startQuiz);
-answer1.addEventListener("click", function (event) {
-  let user = event.target;
-  let question1 = {
-    question: "What is the full name of HTML?",
-    choice1: "Hyper Type Making Languague",
-    choice2: "Hyper Text Markup Languague",
-    choice3: "Happy Typing a Madeup Languague",
-    choice4: "Hamburger Tuna Mayo and Lettuce",
-    answer: "Hyper Text Markup Languague",
-  };
-
-  //   console.log(question1);
-
-  console.log(user);
-});
-
 function playGame() {
-  let questionContainer = document.querySelector("#question1");
-  questionContainer.addEventListener("click", function (event) {
+  questionsDiv.addEventListener("click", function (event) {
     let element = event.target;
 
     if (element.matches(".choice")) {
@@ -162,7 +170,7 @@ function playGame() {
         element.setAttribute("data-status", "clicked");
         if (status === "clicked") {
           console.log("clicked");
-          game.textContent = "game done";
+          game.textContent = "game done. Your time was " + number + " secs";
         }
         //   element.textContent = text;
         console.log("correct");
@@ -174,3 +182,5 @@ function playGame() {
     }
   });
 }
+
+button.addEventListener("click", startQuiz);
