@@ -2,7 +2,6 @@
 let timer = document.querySelector("#timer");
 let body = document.body;
 let game = document.querySelector("#game");
-let gameIntro = document.querySelector("#game-intro");
 let answers = document.querySelector("#answers");
 let button = document.querySelector("#button");
 let placeUser = document.querySelector("#place-user");
@@ -96,7 +95,7 @@ function sendMessage() {
 function startQuiz() {
   setTime();
 
-  gameIntro.setAttribute("class", "none");
+  game.setAttribute("class", "none");
   listItem.append(button1);
   listItem2.append(button2);
   listItem3.append(button3);
@@ -212,9 +211,9 @@ function playGamePt3() {
       // Appending text and form that shows up after game ends
       formEl.appendChild(formInput);
       formEl.appendChild(submitBtn);
-      game.appendChild(endingText);
-      game.appendChild(endingScore);
-      game.appendChild(formEl);
+      body.appendChild(endingText);
+      body.appendChild(endingScore);
+      body.appendChild(formEl);
 
       // Local Storage
       let score = number;
@@ -236,7 +235,7 @@ function playGamePt3() {
 button.addEventListener("click", startQuiz);
 
 // Getting from Local storage and displaying it on High Scores page (Currently Not Working)
-let time = localStorage.getItem("time");
+let time = JSON.parse(localStorage.getItem("time"));
 placeScore.textContent = time;
 
 let user = localStorage.getItem("user");
