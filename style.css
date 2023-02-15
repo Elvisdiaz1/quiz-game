@@ -41,3 +41,60 @@
 .visible {
   display: block;
 }
+
+#questions {
+  position: relative;
+  left: 35%;
+}
+
+.question {
+  font-size: 35px;
+}
+
+.answers {
+  position: relative;
+  left: 6%;
+}
+
+.answers button {
+  padding: 5px;
+  margin-top: 1%;
+  font-size: 17px;
+  background-color: greenyellow;
+}
+
+#ending-text {
+  position: relative;
+  font-size: 35px;
+  left: 30%;
+}
+
+#ending-score {
+  font-size: 20px;
+  position: relative;
+  left: 25%;
+  margin-top: 3%;
+}
+
+form {
+  margin-top: 3%;
+  position: relative;
+  left: 35%;
+}
+
+#input {
+  padding: 1%;
+  margin-right: 2%;
+}
+
+#submit {
+  padding: 6px;
+}
+
+#high-score {
+  margin-left: 20px;
+  margin-top: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  color: blue;
+}

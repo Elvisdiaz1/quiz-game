@@ -1,6 +1,7 @@
 let timer = document.querySelector("#timer");
 let body = document.body;
 let game = document.querySelector("#game");
+let gameIntro = document.querySelector("#game-intro");
 let answers = document.querySelector("#answers");
 let button = document.querySelector("#button");
 let answer1 = document.querySelector("#choice1");
@@ -8,13 +9,12 @@ let answer2 = document.querySelector("#choice2");
 let answer3 = document.querySelector("#choice3");
 let answer4 = document.querySelector("#choice4");
 
-// let highScoreButton = document.querySelector("#high-score");
-
 // Create
-// let time = document.createElement("p");
-let viewHighScoreButton = document.createElement("a");
-viewHighScoreButton.setAttribute("id", "high-score");
-viewHighScoreButton.setAttribute("href", "./high-score.html");
+// let viewHighScoreLink = document.createElement("a");
+// let viewHighScoreButton = document.createElement("button");
+// viewHighScoreButton.setAttribute("id", "high-score");
+// viewHighScoreLink.setAttribute("href", "./high-score.html");
+// viewHighScoreButton.appendChild(viewHighScoreLink);
 
 let questionsDiv = document.createElement("div");
 questionsDiv.setAttribute("id", "questions");
@@ -37,15 +37,24 @@ button1.setAttribute("class", "choice");
 let button2 = document.createElement("button");
 button2.setAttribute("id", "choice2");
 button2.setAttribute("class", "choice");
-// button2.setAttribute("data-answer");
 let button3 = document.createElement("button");
 button3.setAttribute("id", "choice3");
 button3.setAttribute("class", "choice");
-// button3.setAttribute("data-answer");
 let button4 = document.createElement("button");
 button4.setAttribute("id", "choice4");
 button4.setAttribute("class", "choice");
-// button4.setAttribute("data-answer");
+
+let formEl = document.createElement("form");
+let formInput = document.createElement("input");
+formInput.setAttribute("type", "text");
+formInput.setAttribute("placeholder", "Initials");
+formInput.setAttribute("id", "input");
+let submitBtn = document.createElement("button");
+submitBtn.setAttribute("id", "submit");
+let endingText = document.createElement("p");
+endingText.setAttribute("id", "ending-text");
+let endingScore = document.createElement("p");
+endingScore.setAttribute("id", "ending-score");
 
 let number = 59;
 
@@ -56,9 +65,8 @@ button1.textContent = "Hyper Type Making Languague";
 button2.textContent = "Hyper Text Markup Languague";
 button3.textContent = " Happy Typing a Madeup Languague";
 button4.textContent = "Hoping Text Markup Languague";
-
-// Place
-// body.appendChild(time);
+submitBtn.textContent = "Submit";
+// viewHighScoreButton.textContent = "High Score";
 
 // Functions
 
@@ -67,32 +75,28 @@ function setTime() {
     number--;
     timer.textContent = "Time: " + number + " secs";
 
-    if (number === 0) {
+    if (number <= 0) {
       clearInterval(timeCountingDown);
       sendMessage();
+    }
+    if (number > 60) {
+      clearInterval(timeCountingDown);
+      timer.textContent = "";
     }
   }, 1000);
 }
 
 function sendMessage() {
-  game.setAttribute("class", "visible");
+  gameIntro.setAttribute("class", "visible");
   questionsDiv.setAttribute("class", "none");
-  game.textContent = "You Lose";
-  button.textContent = "Retry";
+  game.textContent = "You Lose. Reload the page to try again.";
   viewHighScoreButton.textContent = "View High Scores";
-  body.appendChild(viewHighScoreButton);
 }
 
 function startQuiz() {
   setTime();
-  //   game.textContent = question1.question;
-  //   answer1.textContent = question1.choice1;
-  //   answer2.textContent = question1.choice2;
-  //   answer3.textContent = question1.choice3;
-  //   answer4.textContent = question1.choice4;
-  //   playQuiz();
-  //   generateList();
-  game.setAttribute("class", "none");
+
+  gameIntro.setAttribute("class", "none");
   listItem.append(button1);
   listItem2.append(button2);
   listItem3.append(button3);
@@ -112,7 +116,6 @@ function startQuiz() {
   button4.setAttribute("data-answer", "incorrect-answer");
   button2.setAttribute("data-status", "not-clicked");
 
-  // game.appendChild(questionsDiv);
   playGame();
 }
 
@@ -143,6 +146,7 @@ function playGame() {
       button2.setAttribute("data-answer", "incorrect-answer");
 
       button1.setAttribute("data-status", "not-clicked");
+      button2.setAttribute("data-status", "not-clicked");
       playGamePt2();
       console.log("clicked");
     } else {
@@ -157,7 +161,6 @@ function playGamePt2() {
     let status = element.getAttribute("data-status");
 
     if (element.matches(".choice")) {
-      // var state = element.getAttribute("data-state");
       var answerChoice = element.getAttribute("data-answer");
 
       if (answerChoice === "correct-answer") {
@@ -179,13 +182,12 @@ function playGamePt2() {
       button1.setAttribute("data-answer", "incorrect-answer2");
       button3.setAttribute("data-answer", "correct-answer");
 
+      button1.setAttribute("data-status", "not-clicked");
       button3.setAttribute("data-status", "not-clicked");
 
       playGamePt3();
       console.log("clicked");
     } else {
-      //   element.setAttribute("data-state", "hidden");
-      //   element.textContent = "";
       console.log("incorrect");
     }
   });
@@ -202,23 +204,40 @@ function playGamePt3() {
       if (answerChoice === "correct-answer") {
         element.setAttribute("data-status", "clicked");
       } else {
-        //   element.setAttribute("data-state", "hidden");
-        //   element.textContent = "";
         console.log("incorrect");
       }
     }
     if (status === "clicked") {
-      game.setAttribute("class", "visible");
       questionsDiv.setAttribute("class", "none");
-      game.textContent =
-        "GAME IS FINISHED! Your time was " +
-        number +
-        " secs. Reload the page to try again.";
+      endingText.textContent = "GAME IS FINISHED!";
+      endingScore.textContent =
+        "Your time was " + number + " secs. Reload the page to try again.";
+
+      formEl.appendChild(formInput);
+      formEl.appendChild(submitBtn);
+      // formEl.appendChild(viewHighScoreButton);
+      game.appendChild(endingText);
+      game.appendChild(endingScore);
+      game.appendChild(formEl);
+
+      let time = localStorage.getItem("time");
+      let score = number;
+      score = time;
+
+      let user = localStorage.getItem("user");
+      formInput.textContent = user;
+
+      submitBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        localStorage.setItem("time", score);
+        localStorage.setItem("player", user);
+        submitBtn.textContent = "SUBMITTED";
+      });
+
+      number = 62;
 
       console.log("clicked");
     } else {
-      //   element.setAttribute("data-state", "hidden");
-      //   element.textContent = "";
       console.log("incorrect");
     }
   });

@@ -5,25 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coding Quiz Game</title>
+    <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="top-screen">
-      <a id="high-score" href="./high-score.html">high score</a>
+      <a id="high-score" href="./high-score.html">High Scores</a>
       <p id="timer"></p>
     </div>
 
-    <div id="game" class="visible">
-      <h1>Coding Quiz Game</h1>
-      <p>
-        Welcome to the coding quiz game! Try to answer the following questions
-        within the time limit. When you answer all the questions, your score
-        will be determined and you can save the score to complete against your
-        friends or aim to get a better score. If you do not answer all the
-        questions in time, you lose. Try your best and have fun!
-      </p>
-      <button id="button">Start Game</button>
+    <div id="game">
+      <div id="game-intro" class="visible">
+        <h1>Coding Quiz Game</h1>
+        <p>
+          Welcome to the coding quiz game! Try to answer the following questions
+          within the time limit. The next question will appear when you choose
+          the correct answer. When you answer all the questions, your score will
+          be the time left on the timer and you can save the score to complete
+          against your friends or aim to get a better score. If you choose the
+          incorrect answer, your time limit will decrease. If you do not answer
+          all the questions in time, you lose. Try your best and have fun!
+        </p>
+        <button id="button">Start Game</button>
+      </div>
     </div>
+    <!-- <form>
+      <input type="text" placeholder="Intitals" id="input" />
+      <button id="submit">Submit</button>
+    </form> -->
 
     <script src="./script.js"></script>
   </body>
