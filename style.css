@@ -4,12 +4,14 @@
   padding: 0;
 }
 
+/* High Score and Timer at the top of the screen */
 #top-screen {
   display: flex;
   justify-content: space-between;
   font-size: 25px;
 }
 
+/* Main Body Styling */
 #game {
   position: relative;
   left: 25%;
@@ -17,12 +19,13 @@
   max-width: 50%;
 }
 
-#game h1 {
+/*Game Intro Styling */
+#game-intro h1 {
   position: relative;
   left: 30%;
   padding-bottom: 3%;
 }
-#game p {
+#game-intro p {
   font-size: 20px;
 }
 
@@ -34,14 +37,16 @@
   margin-top: 3%;
 }
 
+/* Style to remove content from screen */
 .none {
   display: none;
 }
-
+/* Style to display content on screen */
 .visible {
   display: block;
 }
 
+/* Game Quiz Styling */
 #questions {
   position: relative;
   left: 35%;
@@ -63,6 +68,7 @@
   background-color: greenyellow;
 }
 
+/* Ending Screen Styling */
 #ending-text {
   position: relative;
   font-size: 35px;
@@ -75,7 +81,7 @@
   left: 25%;
   margin-top: 3%;
 }
-
+/* Form Styling */
 form {
   margin-top: 3%;
   position: relative;
@@ -91,6 +97,7 @@ form {
   padding: 6px;
 }
 
+/* High Score Link Styling */
 #high-score {
   margin-left: 20px;
   margin-top: 5px;

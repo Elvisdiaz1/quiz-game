@@ -1,27 +1,34 @@
+// Query Selectors
 let timer = document.querySelector("#timer");
 let body = document.body;
 let game = document.querySelector("#game");
 let gameIntro = document.querySelector("#game-intro");
 let answers = document.querySelector("#answers");
 let button = document.querySelector("#button");
+let placeUser = document.querySelector("#place-user");
+let placeScore = document.querySelector("#place-score");
 
-// Create
-
+// Creating elements to be placed dynamically on the page and setting attributes to them
+// Creating Question and answers container
 let questionsDiv = document.createElement("div");
 questionsDiv.setAttribute("id", "questions");
 
+// Creating question element
 let questionEl = document.createElement("p");
 questionEl.setAttribute("class", "question");
 
+// Creating answers container
 let answersDiv = document.createElement("div");
 answersDiv.setAttribute("class", "answers");
 
+// Creating list elements
 let listDiv = document.createElement("ul");
 let listItem = document.createElement("li");
 let listItem2 = document.createElement("li");
 let listItem3 = document.createElement("li");
 let listItem4 = document.createElement("li");
 
+// Creating pickable answers via buttons
 let button1 = document.createElement("button");
 button1.setAttribute("id", "choice1");
 button1.setAttribute("class", "choice");
@@ -35,6 +42,7 @@ let button4 = document.createElement("button");
 button4.setAttribute("id", "choice4");
 button4.setAttribute("class", "choice");
 
+// Creating the text input and submit button with the form container
 let formEl = document.createElement("form");
 let formInput = document.createElement("input");
 formInput.setAttribute("type", "text");
@@ -47,9 +55,10 @@ endingText.setAttribute("id", "ending-text");
 let endingScore = document.createElement("p");
 endingScore.setAttribute("id", "ending-score");
 
+// Timer Starting Number
 let number = 59;
 
-// Build
+// Text Content for the timer, first question with corresponding answers, and submit button
 timer.textContent = "Time: " + number + " secs";
 questionEl.textContent = "What is the full name of HTML?";
 button1.textContent = "Hyper Type Making Languague";
@@ -57,10 +66,9 @@ button2.textContent = "Hyper Text Markup Languague";
 button3.textContent = " Happy Typing a Madeup Languague";
 button4.textContent = "Hoping Text Markup Languague";
 submitBtn.textContent = "Submit";
-// viewHighScoreButton.textContent = "High Score";
 
 // Functions
-
+// Timer Counting Down Function
 function setTime() {
   let timeCountingDown = setInterval(function () {
     number--;
@@ -77,13 +85,14 @@ function setTime() {
   }, 1000);
 }
 
+// Message for Losing In Game Function
 function sendMessage() {
   gameIntro.setAttribute("class", "visible");
   questionsDiv.setAttribute("class", "none");
   game.textContent = "You Lose. Reload the page to try again.";
-  viewHighScoreButton.textContent = "View High Scores";
 }
 
+// Starting Game Function
 function startQuiz() {
   setTime();
 
@@ -110,22 +119,22 @@ function startQuiz() {
   playGame();
 }
 
+// Game Functionality
 function playGame() {
   questionsDiv.addEventListener("click", function (event) {
     let element = event.target;
     let status = element.getAttribute("data-status");
 
     if (element.matches(".choice")) {
-      // var state = element.getAttribute("data-state");
       var answerChoice = element.getAttribute("data-answer");
 
       if (answerChoice === "correct-answer") {
         element.setAttribute("data-status", "clicked");
       } else {
         number = number - 5;
-        console.log("incorrect");
       }
     }
+    // After data-status changed to 'clicked, question and answer text contents changed into the next question and set of answers
     if (status === "clicked") {
       questionEl.textContent = "What is the role of CSS?";
       button1.textContent = "To style the website";
@@ -139,13 +148,10 @@ function playGame() {
       button1.setAttribute("data-status", "not-clicked");
       button2.setAttribute("data-status", "not-clicked");
       playGamePt2();
-      console.log("clicked");
-    } else {
-      number = number - 5;
-      console.log("incorrect");
     }
   });
 }
+// Functionality for second question and answer set
 function playGamePt2() {
   questionsDiv.addEventListener("click", function (event) {
     let element = event.target;
@@ -158,9 +164,9 @@ function playGamePt2() {
         element.setAttribute("data-status", "clicked");
       } else {
         number = number - 5;
-        console.log("incorrect");
       }
     }
+    // After data-status changed to 'clicked, question and answer text contents changed into the final question and set of answers
     if (status === "clicked") {
       questionEl.textContent = "What does Array.push() do?";
       button1.textContent = "Pushes strings in an object";
@@ -177,12 +183,10 @@ function playGamePt2() {
       button3.setAttribute("data-status", "not-clicked");
 
       playGamePt3();
-      console.log("clicked");
-    } else {
-      console.log("incorrect");
     }
   });
 }
+// Functionality for final question and answer set
 function playGamePt3() {
   questionsDiv.addEventListener("click", function (event) {
     let element = event.target;
@@ -195,44 +199,45 @@ function playGamePt3() {
       if (answerChoice === "correct-answer") {
         element.setAttribute("data-status", "clicked");
       } else {
-        console.log("incorrect");
+        number = number - 5;
       }
     }
+    // Game ends and your time is determined
     if (status === "clicked") {
       questionsDiv.setAttribute("class", "none");
       endingText.textContent = "GAME IS FINISHED!";
       endingScore.textContent =
         "Your time was " + number + " secs. Reload the page to try again.";
 
+      // Appending text and form that shows up after game ends
       formEl.appendChild(formInput);
       formEl.appendChild(submitBtn);
-      // formEl.appendChild(viewHighScoreButton);
       game.appendChild(endingText);
       game.appendChild(endingScore);
       game.appendChild(formEl);
 
-      let time = localStorage.getItem("time");
+      // Local Storage
       let score = number;
-
-      let user = localStorage.getItem("user");
-      formInput.textContent = user;
-
+      // After button is clicked, info goes to local storage
       submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
         let userName = document.querySelector("#input").value;
-        let userScore = document.querySelector("#timer").value;
         localStorage.setItem("player", userName);
         localStorage.setItem("time", JSON.stringify(score));
         submitBtn.textContent = "SUBMITTED";
       });
-
+      // Static number to shut down timer interval function
       number = 62;
-
-      console.log("clicked");
-    } else {
-      console.log("incorrect");
     }
   });
 }
 
+// Button Event Listener to start the game once "Start Game" button is pressed
 button.addEventListener("click", startQuiz);
+
+// Getting from Local storage and displaying it on High Scores page (Currently Not Working)
+let time = localStorage.getItem("time");
+placeScore.textContent = time;
+
+let user = localStorage.getItem("user");
+placeUser.textContent = user;

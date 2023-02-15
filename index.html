@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
+  <header>
     <div id="top-screen">
       <a id="high-score" href="./high-score.html">High Scores</a>
       <p id="timer"></p>
-    </div>
+    </header>
 
-    <div id="game">
-      <div id="game-intro" class="visible">
+    <main id="game">
+      <body id="game-intro" class="visible">
         <h1>Coding Quiz Game</h1>
         <p>
           Welcome to the coding quiz game! Try to answer the following questions
@@ -24,15 +24,13 @@
           be the time left on the timer and you can save the score to complete
           against your friends or aim to get a better score. If you choose the
           incorrect answer, your time limit will decrease. If you do not answer
-          all the questions in time, you lose. Try your best and have fun!
+          all the questions in time, you lose. Try your best and have fun! (You
+          may need to hit the choices two times as the quiz is still a little
+          buggy)
         </p>
         <button id="button">Start Game</button>
-      </div>
-    </div>
-    <!-- <form>
-      <input type="text" placeholder="Intitals" id="input" />
-      <button id="submit">Submit</button>
-    </form> -->
+      </body>
+    </main>
 
     <script src="./script.js"></script>
   </body>
