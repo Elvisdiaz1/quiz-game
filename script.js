@@ -4,17 +4,8 @@ let game = document.querySelector("#game");
 let gameIntro = document.querySelector("#game-intro");
 let answers = document.querySelector("#answers");
 let button = document.querySelector("#button");
-let answer1 = document.querySelector("#choice1");
-let answer2 = document.querySelector("#choice2");
-let answer3 = document.querySelector("#choice3");
-let answer4 = document.querySelector("#choice4");
 
 // Create
-// let viewHighScoreLink = document.createElement("a");
-// let viewHighScoreButton = document.createElement("button");
-// viewHighScoreButton.setAttribute("id", "high-score");
-// viewHighScoreLink.setAttribute("href", "./high-score.html");
-// viewHighScoreButton.appendChild(viewHighScoreLink);
 
 let questionsDiv = document.createElement("div");
 questionsDiv.setAttribute("id", "questions");
@@ -222,15 +213,16 @@ function playGamePt3() {
 
       let time = localStorage.getItem("time");
       let score = number;
-      score = time;
 
       let user = localStorage.getItem("user");
       formInput.textContent = user;
 
       submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
-        localStorage.setItem("time", score);
-        localStorage.setItem("player", user);
+        let userName = document.querySelector("#input").value;
+        let userScore = document.querySelector("#timer").value;
+        localStorage.setItem("player", userName);
+        localStorage.setItem("time", JSON.stringify(score));
         submitBtn.textContent = "SUBMITTED";
       });
 
